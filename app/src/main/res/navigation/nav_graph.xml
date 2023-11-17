@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/hotelsFragment">
+
+    <fragment
+        android:id="@+id/hotelsFragment"
+        android:name="com.l_george.hotels.ui.fragments.HotelsFragment"
+        android:label="fragment_hotels"
+        tools:layout="@layout/fragment_hotels">
+        <action
+            android:id="@+id/action_hotelsFragment_to_roomFragment"
+            app:destination="@id/roomFragment"
+            app:enterAnim="@anim/in_right"
+            app:exitAnim="@anim/out_left"
+            app:popEnterAnim="@anim/in_left"
+            app:popExitAnim="@anim/out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.l_george.hotels.ui.fragments.RoomFragment"
+        android:label="fragment_room"
+        tools:layout="@layout/fragment_room" />
+</navigation>
