@@ -1,4 +1,4 @@
-package com.l_george.hotels.viewModels
+package com.l_george.hotels.viewModels.hotelViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

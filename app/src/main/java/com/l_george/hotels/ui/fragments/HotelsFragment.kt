@@ -13,8 +13,8 @@ import com.l_george.hotels.R
 import com.l_george.hotels.app.HotelApp
 import com.l_george.hotels.databinding.FragmentHotelsBinding
 import com.l_george.hotels.ui.adapters.PeculiaritiesAdapter
-import com.l_george.hotels.viewModels.HotelViewModel
-import com.l_george.hotels.viewModels.HotelViewModelFactory
+import com.l_george.hotels.viewModels.hotelViewModel.HotelViewModel
+import com.l_george.hotels.viewModels.hotelViewModel.HotelViewModelFactory
 
 import javax.inject.Inject
 
