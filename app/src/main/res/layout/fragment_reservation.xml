@@ -40,6 +40,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         app:layout_constraintBottom_toTopOf="@+id/button_card"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
@@ -49,7 +50,7 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/hotel_name_layout"
+                android:id="@+id/hotel_name_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/main_card_all_corners_bg">
@@ -132,11 +133,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/hotelInfo_layout"
+                android:id="@+id/hotelInfo_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/main_card_all_corners_bg">
+                android:background="@drawable/main_card_all_corners_bg"
+               >
 
 
                 <TextView
@@ -337,6 +339,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/byuer_info_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -399,37 +402,154 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/roboto"
                     android:text="Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту"
                     android:textColor="@color/text_grey"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/email_input_layout"
-                   />
+                    app:layout_constraintTop_toBottomOf="@id/email_input_layout" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <FrameLayout
-                android:layout_marginTop="8dp"
-                android:background="@drawable/main_card_all_corners_bg"
+                android:id="@+id/tourist_block"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/main_card_all_corners_bg">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tourist"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/tourist_item_layout"
-                    android:layout_height="wrap_content"/>
+                    tools:itemCount="2"
+                    tools:listitem="@layout/tourist_item_layout" />
 
 
             </FrameLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/final_price_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/main_card_all_corners_bg">
 
+                <TextView
+                    android:id="@+id/text_tour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Тур"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_tour_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/text_tour"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_tour"
+                    tools:text="150_000" />
+
+
+                <TextView
+                    android:id="@+id/text_fuel_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Топливный сбор"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_tour" />
+
+
+                <TextView
+                    android:id="@+id/text_fuel_price_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/text_fuel_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_fuel_price"
+                    tools:text="10_000" />
+
+
+                <TextView
+                    android:id="@+id/text_service_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Сервисный сбор"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_fuel_price" />
+
+                <TextView
+                    android:id="@+id/text_service_price_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/text_service_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_service_price"
+                    tools:text="1120" />
+
+
+                <TextView
+                    android:id="@+id/text_final_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="К оплате"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_service_price" />
+
+                <TextView
+                    android:id="@+id/text_final_price_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/text_blue"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/text_final_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_final_price"
+                    tools:text="120_000" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -455,7 +575,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="21dp"
             android:background="@drawable/button_blue_corners"
-            android:text="К выбору номера"
+            android:text="Оплатить 100"
             android:textColor="@color/white" />
 
     </androidx.cardview.widget.CardView>
