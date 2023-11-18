@@ -3,6 +3,7 @@ package com.l_george.hotels.di
 import android.content.Context
 import com.l_george.hotels.data.repository.HotelRepository
 import com.l_george.hotels.viewModels.hotelViewModel.HotelViewModelFactory
+import com.l_george.hotels.viewModels.reserveViewModel.ReserveViewModelFactory
 import com.l_george.hotels.viewModels.roomViewModel.RoomViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,11 @@ class AppModule(private val context: Context) {
     @Provides
     fun provideRoomViewModelFactory(repository: HotelRepository): RoomViewModelFactory {
         return RoomViewModelFactory(repository)
+    }
+
+    @Provides
+    fun provideReserveViewModelFactory(repository: HotelRepository): ReserveViewModelFactory {
+        return ReserveViewModelFactory(repository)
     }
 
 }
