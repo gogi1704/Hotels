@@ -19,7 +19,7 @@ class HotelRepositoryImpl(private val apiService: ApiService) : HotelRepository 
     override suspend fun getRooms(): List<RoomModel> {
         val response = apiService.getRooms()
         if (response.isSuccessful) {
-            return response.body() ?: throw Exception()
+            return response.body()?.rooms ?: throw Exception()
         } else {
             throw Exception()
         }

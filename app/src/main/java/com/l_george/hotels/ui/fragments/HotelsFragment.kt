@@ -74,7 +74,7 @@ class HotelsFragment : Fragment() {
             }
 
             viewModel.hotelImagesLiveData.observe(viewLifecycleOwner) {
-                carousel.addData(it)
+                carousel.setData(it)
             }
 
             buttonToRooms.setOnClickListener {

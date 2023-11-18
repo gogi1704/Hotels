@@ -8,6 +8,7 @@
     <color name="text_grey">#828796</color>
     <color name="yellow_bg_alfa">#33FFA800</color>
     <color name="text_bg_grey">#12828796</color>
+    <color name="text_bg_blue">#1A0D72FF</color>
 
     <color name="seed">#0D72FE</color>
     <color name="md_theme_light_primary">#0D72FE</color>

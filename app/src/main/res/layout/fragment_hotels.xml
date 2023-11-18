@@ -413,6 +413,7 @@
         android:layout_width="match_parent"
         android:layout_marginStart="16dp"
         android:text="К выбору номера"
+        android:textColor="@color/white"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="21dp"
         android:background="@drawable/button_blue_corners"

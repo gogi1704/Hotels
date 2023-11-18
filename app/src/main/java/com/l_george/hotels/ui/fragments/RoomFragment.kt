@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.l_george.hotels.app.HotelApp
 import com.l_george.hotels.databinding.FragmentRoomBinding
+import com.l_george.hotels.ui.adapters.RoomAdapter
+import com.l_george.hotels.ui.adapters.RoomClickListener
 import com.l_george.hotels.viewModels.roomViewModel.RoomViewModel
 import com.l_george.hotels.viewModels.roomViewModel.RoomViewModelFactory
 import javax.inject.Inject
@@ -15,6 +19,9 @@ import javax.inject.Inject
 class RoomFragment : Fragment() {
     private lateinit var binding: FragmentRoomBinding
     private lateinit var roomViewModel: RoomViewModel
+    private lateinit var roomsRecyclerView: RecyclerView
+    private lateinit var roomAdapter: RoomAdapter
+
     @Inject
     lateinit var viewModelFactory: RoomViewModelFactory
 
@@ -26,6 +33,30 @@ class RoomFragment : Fragment() {
         (requireActivity().applicationContext as HotelApp).appComponent.inject(this)
 
         roomViewModel = ViewModelProvider(owner = this, viewModelFactory)[RoomViewModel::class.java]
+
+        roomAdapter = RoomAdapter(object : RoomClickListener {
+            override fun openRoom(roomId: Int) {
+                findNavController()
+                TODO("Not yet implemented")
+            }
+        })
+
+        with(binding) {
+            roomsRecyclerView = recyclerRooms.apply {
+                adapter = roomAdapter
+            }
+
+            roomViewModel.listRoomsLiveData.observe(viewLifecycleOwner) {
+                if (it.isNotEmpty()) {
+                    roomAdapter.submitList(it)
+                }
+            }
+
+            buttonBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+
+        }
 
 
 
