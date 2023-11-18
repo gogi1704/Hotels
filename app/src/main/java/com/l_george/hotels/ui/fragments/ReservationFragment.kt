@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.l_george.hotels.app.HotelApp
 import com.l_george.hotels.databinding.FragmentReservationBinding
+import com.l_george.hotels.domain.models.reserveModel.ReserveModel
 import com.l_george.hotels.viewModels.reserveViewModel.ReserveViewModel
 import com.l_george.hotels.viewModels.reserveViewModel.ReserveViewModelFactory
 import ru.tinkoff.decoro.MaskImpl
@@ -20,7 +21,8 @@ import javax.inject.Inject
 
 class ReservationFragment : Fragment() {
     private lateinit var binding: FragmentReservationBinding
-    @Inject lateinit var reserveViewModelFactory: ReserveViewModelFactory
+    @Inject
+    lateinit var reserveViewModelFactory: ReserveViewModelFactory
     private lateinit var reserveViewModel: ReserveViewModel
 
     override fun onCreateView(
@@ -29,11 +31,13 @@ class ReservationFragment : Fragment() {
     ): View {
         binding = FragmentReservationBinding.inflate(layoutInflater, container, false)
         (requireActivity().applicationContext as HotelApp).appComponent.inject(this)
-        reserveViewModel = ViewModelProvider(this , reserveViewModelFactory)[ReserveViewModel::class.java]
+        reserveViewModel =
+            ViewModelProvider(this, reserveViewModelFactory)[ReserveViewModel::class.java]
 
-        val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
-        mask.placeholder='*'
-        mask.isShowingEmptySlots = true
+        val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER).apply {
+            placeholder = '*'
+            isShowingEmptySlots = true
+        }
         val formatWatcher = MaskFormatWatcher(mask)
 
         with(binding) {
@@ -45,10 +49,45 @@ class ReservationFragment : Fragment() {
                     inputEmail.error = "invalid format"
                 }
             }
+
+
+
+
+            reserveViewModel.reserveModelLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    fillScreenData(it)
+                }
+            }
         }
 
 
         return binding.root
+    }
+
+    private fun fillScreenData(it:ReserveModel){
+        val fullPrice = it.fuel_charge + it.service_charge + it.tour_price
+        with(binding){
+            rating.text = it.horating.toString()
+            ratingName.text = it.rating_name
+            textName.text = it.hotel_name
+            textAdress.text = it.hotel_adress
+            departureInput.text = it.departure
+            cityInput.text = it.arrival_country
+            nightsInput.text = it.number_of_nights.toString()
+            hotelInput.text = it.hotel_name
+            roomInput.text = it.room
+            nutritionInput.text = it.nutrition
+            dateInput.text = buildString {
+                append(it.tour_date_start)
+                append("-")
+                append(it.tour_date_stop)
+            }
+
+            textTourInput.text = it.tour_price.toString()
+            textFuelPriceInput.text = it.fuel_charge.toString()
+            textServicePriceInput.text = it.service_charge.toString()
+            textFinalPriceInput.text = fullPrice.toString()
+        }
     }
 
 

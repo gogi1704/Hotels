@@ -8,6 +8,8 @@ import java.lang.Exception
 
 class HotelRepositoryImpl(private val apiService: ApiService) : HotelRepository {
 
+
+
     override suspend fun getHotel(): HotelModel {
         val response = apiService.getHotel()
         if (response.isSuccessful) {
@@ -34,6 +36,8 @@ class HotelRepositoryImpl(private val apiService: ApiService) : HotelRepository 
             throw Exception()
         }
     }
+
+
 
 
 }
