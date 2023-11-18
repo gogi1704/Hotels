@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.l_george.hotels.R
 import com.l_george.hotels.app.HotelApp
 import com.l_george.hotels.databinding.FragmentRoomBinding
 import com.l_george.hotels.ui.adapters.RoomAdapter
@@ -36,8 +37,8 @@ class RoomFragment : Fragment() {
 
         roomAdapter = RoomAdapter(object : RoomClickListener {
             override fun openRoom(roomId: Int) {
-                findNavController()
-                TODO("Not yet implemented")
+                findNavController().navigate(R.id.action_roomFragment_to_reservationFragment)
+
             }
         })
 

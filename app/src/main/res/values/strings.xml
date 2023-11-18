@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Hotels</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="departure">Вылет из</string>
+    <string name="text_location">Страна , город</string>
+    <string name="text_dates">Даты</string>
+    <string name="text_nights">Кол-во ночей</string>
+    <string name="text_hotel">Отель</string>
+    <string name="text_room">Номер</string>
+    <string name="text_nutrition">Питание</string>
 </resources>

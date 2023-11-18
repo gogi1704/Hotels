@@ -34,7 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
@@ -83,6 +83,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     //Image carousel
-    implementation ("me.relex:circleindicator:2.1.6")
-    implementation ("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
+    implementation("me.relex:circleindicator:2.1.6")
+    implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
+
+    implementation("ru.tinkoff.decoro:decoro:1.1.1")
 }

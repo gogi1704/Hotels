@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="input_text_style" parent="Widget.Material3.TextInputLayout.FilledBox">
+
+        <item name="hintTextColor">@color/text_grey</item>
+        <item name="boxBackgroundColor">@color/text_bg_grey</item>
+
+
+    </style>
+</resources>

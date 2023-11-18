@@ -22,5 +22,14 @@
         android:id="@+id/roomFragment"
         android:name="com.l_george.hotels.ui.fragments.RoomFragment"
         android:label="fragment_room"
-        tools:layout="@layout/fragment_room" />
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_roomFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.l_george.hotels.ui.fragments.ReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
 </navigation>
