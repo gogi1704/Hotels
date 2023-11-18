@@ -11,7 +11,7 @@
     <color name="text_bg_blue">#1A0D72FF</color>
 
     <color name="seed">#0D72FE</color>
-    <color name="md_theme_light_primary">#0D72FE</color>
+    <color name="md_theme_light_primary">#FFFFFF</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
     <color name="md_theme_light_primaryContainer">#D0E4FF</color>
     <color name="md_theme_light_onPrimaryContainer">#001D34</color>
