@@ -414,6 +414,24 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <FrameLayout
+                android:layout_marginTop="8dp"
+                android:background="@drawable/main_card_all_corners_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/tourist_item_layout"
+                    android:layout_height="wrap_content"/>
+
+
+            </FrameLayout>
+
+
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
