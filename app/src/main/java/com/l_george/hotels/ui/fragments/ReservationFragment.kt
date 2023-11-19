@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.l_george.hotels.app.HotelApp
 import com.l_george.hotels.databinding.FragmentReservationBinding
 import com.l_george.hotels.domain.models.reserveModel.ReserveModel
+import com.l_george.hotels.ui.adapters.TouristAdapter
+import com.l_george.hotels.ui.adapters.TouristClickListener
 import com.l_george.hotels.viewModels.reserveViewModel.ReserveViewModel
 import com.l_george.hotels.viewModels.reserveViewModel.ReserveViewModelFactory
 import ru.tinkoff.decoro.MaskImpl
@@ -21,9 +23,11 @@ import javax.inject.Inject
 
 class ReservationFragment : Fragment() {
     private lateinit var binding: FragmentReservationBinding
+
     @Inject
     lateinit var reserveViewModelFactory: ReserveViewModelFactory
     private lateinit var reserveViewModel: ReserveViewModel
+    private lateinit var adapter: TouristAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +44,20 @@ class ReservationFragment : Fragment() {
         }
         val formatWatcher = MaskFormatWatcher(mask)
 
+        adapter = TouristAdapter(object : TouristClickListener {
+            override fun addTourist() {
+                reserveViewModel.addNewTourist()
+            }
+
+            override fun open(itemId: Int, isOpen: Boolean) {
+                reserveViewModel.openTouristItem(itemId, isOpen)
+            }
+        })
+
         with(binding) {
             formatWatcher.installOn(inputNumber)
             inputNumber.setText("+")
+            binding.recyclerTourist.adapter = adapter
 
             inputEmail.addTextChangedListener {
                 if (it.toString().length > 5 && !inputEmail.isEmailValid()) {
@@ -50,8 +65,14 @@ class ReservationFragment : Fragment() {
                 }
             }
 
+            buttonComplete.setOnClickListener {
+
+            }
 
 
+            reserveViewModel.listTouristLiveData.observe(viewLifecycleOwner) {
+                adapter.submitList(it)
+            }
 
             reserveViewModel.reserveModelLiveData.observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -64,9 +85,9 @@ class ReservationFragment : Fragment() {
         return binding.root
     }
 
-    private fun fillScreenData(it:ReserveModel){
+    private fun fillScreenData(it: ReserveModel) {
         val fullPrice = it.fuel_charge + it.service_charge + it.tour_price
-        with(binding){
+        with(binding) {
             rating.text = it.horating.toString()
             ratingName.text = it.rating_name
             textName.text = it.hotel_name

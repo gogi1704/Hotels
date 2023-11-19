@@ -423,6 +423,7 @@
                 android:background="@drawable/main_card_all_corners_bg">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:background="@color/main_bg"
                     android:id="@+id/recycler_tourist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -565,7 +566,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_toRooms"
+            android:id="@+id/button_complete"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="center"
