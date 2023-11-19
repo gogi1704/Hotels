@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.l_george.hotels.R
 import com.l_george.hotels.app.HotelApp
 import com.l_george.hotels.databinding.FragmentReservationBinding
 import com.l_george.hotels.domain.models.reserveModel.ReserveModel
@@ -64,15 +65,38 @@ class ReservationFragment : Fragment() {
             inputNumber.setText("+")
             binding.recyclerTourist.adapter = adapter
 
-            inputEmail.addTextChangedListener {
-                if (it.toString().length > 5 && !inputEmail.isEmailValid()) {
-                    inputEmail.error = "invalid format"
+            inputEmail.onFocusChangeListener =
+                View.OnFocusChangeListener { v, hasFocus ->
+                    if (!hasFocus && !inputEmail.isEmailValid()) {
+                        inputEmail.error = "проверьте валидность данных"
+
+                    }
                 }
-            }
+
+            inputNumber.onFocusChangeListener =
+                View.OnFocusChangeListener { v, hasFocus ->
+                    if (!hasFocus && !inputNumber.isPhoneValid()) {
+                        inputNumber.error = "проверьте валидность данных"
+
+                    }
+                }
 
             buttonComplete.setOnClickListener {
                 clearFocusFromChildren(recyclerTourist)
+                clearFocusFromChildren(byuerInfoBlock)
+                if (inputNumber.text.toString().isEmpty() || !inputNumber.isPhoneValid()) {
+                    inputNumber.error = "проверьте валидность данных"
+                }
+
+                if (inputEmail.text.toString().isEmpty() || !inputEmail.isEmailValid()) {
+                    inputEmail.error = "проверьте валидность данных"
+
+                }
                 reserveViewModel.checkAll()
+            }
+
+            buttonBack.setOnClickListener {
+                findNavController().navigateUp()
             }
 
 
@@ -83,6 +107,13 @@ class ReservationFragment : Fragment() {
             reserveViewModel.reserveModelLiveData.observe(viewLifecycleOwner) {
                 if (it != null) {
                     fillScreenData(it)
+                }
+            }
+
+            reserveViewModel.reservedCompleted.observe(viewLifecycleOwner) {
+                if (it && inputNumber.isPhoneValid() && inputEmail.isEmailValid()) {
+                    findNavController().navigate(R.id.action_reservationFragment_to_completeFragment)
+                    reserveViewModel.reset()
                 }
             }
         }
@@ -97,6 +128,7 @@ class ReservationFragment : Fragment() {
                 clearFocusFromChildren(view.getChildAt(i))
             }
         } else (view as? EditText)?.clearFocus()
+
     }
 
     private fun fillScreenData(it: ReserveModel) {
@@ -128,6 +160,10 @@ class ReservationFragment : Fragment() {
 
     private fun EditText.isEmailValid(): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(this.text.toString()).matches()
+    }
+
+    private fun EditText.isPhoneValid(): Boolean {
+        return android.util.Patterns.PHONE.matcher(this.text.toString()).matches()
     }
 
 }

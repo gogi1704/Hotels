@@ -22,14 +22,35 @@
         android:id="@+id/roomFragment"
         android:name="com.l_george.hotels.ui.fragments.RoomFragment"
         android:label="fragment_room"
-        tools:layout="@layout/fragment_room" >
+        tools:layout="@layout/fragment_room">
         <action
             android:id="@+id/action_roomFragment_to_reservationFragment"
-            app:destination="@id/reservationFragment" />
+            app:destination="@id/reservationFragment"
+            app:enterAnim="@anim/in_right"
+            app:exitAnim="@anim/out_left"
+            app:popEnterAnim="@anim/in_left"
+            app:popExitAnim="@anim/out_right" />
     </fragment>
     <fragment
         android:id="@+id/reservationFragment"
         android:name="com.l_george.hotels.ui.fragments.ReservationFragment"
         android:label="fragment_reservation"
-        tools:layout="@layout/fragment_reservation" />
+        tools:layout="@layout/fragment_reservation">
+        <action
+            android:id="@+id/action_reservationFragment_to_completeFragment"
+            app:destination="@id/completeFragment"
+            app:enterAnim="@anim/in_right"
+            app:exitAnim="@anim/out_left"
+            app:popEnterAnim="@anim/in_left"
+            app:popExitAnim="@anim/out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeFragment"
+        android:name="com.l_george.hotels.ui.fragments.CompleteFragment"
+        android:label="fragment_complete"
+        tools:layout="@layout/fragment_complete">
+        <action
+            android:id="@+id/action_completeFragment_to_hotelsFragment"
+            app:destination="@id/hotelsFragment" />
+    </fragment>
 </navigation>

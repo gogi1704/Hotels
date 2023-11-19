@@ -34,6 +34,8 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
         }
     val listTouristLiveData = MutableLiveData(listTourist)
 
+    val reservedCompleted = MutableLiveData(false)
+
     private val newModelTourist = TouristModel(
         id = 1000,
         name = "",
@@ -60,39 +62,60 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
     }
 
     fun checkAll() {
-        listTourist = listTourist.map { it.copy(isChecked = true) }.toMutableList()
+        viewModelScope.launch {
+            listTourist = listTourist.map { it.copy(isChecked = true) }.toMutableList()
+            var isOk = true
+            for (item in listTourist) {
+                if (item.typeView == TouristViewType.TypeTourist) {
+                    if (item.name.isEmpty() ||
+                        item.secondName.isEmpty() ||
+                        item.date.isEmpty() ||
+                        item.country.isEmpty() ||
+                        item.passportNum.isEmpty() ||
+                        item.passportDate.isEmpty()
+                    ) {
+                        isOk = false
+                        break
+                    }
+                }
+            }
+            reservedCompleted.value = isOk
+
+        }
     }
 
+
     fun saveDate(itemId: Int, contentType: String, content: String) {
-        var model = listTourist.filter { it.id == itemId }[0]
-        when (contentType) {
-            CONTENT_TYPE_NAME -> {
-                model = model.copy(name = content)
+        viewModelScope.launch {
+            var model = listTourist.filter { it.id == itemId }[0]
+            when (contentType) {
+                CONTENT_TYPE_NAME -> {
+                    model = model.copy(name = content)
+                }
+
+                CONTENT_TYPE_SECOND_NAME -> {
+                    model = model.copy(secondName = content)
+                }
+
+                CONTENT_TYPE_DATE -> {
+                    model = model.copy(date = content)
+                }
+
+                CONTENT_TYPE_COUNTRY -> {
+                    model = model.copy(country = content)
+                }
+
+                CONTENT_TYPE_PASSPORT_DATE -> {
+                    model = model.copy(passportDate = content)
+                }
+
+                CONTENT_TYPE_PASSPORT_NUM -> {
+                    model = model.copy(passportNum = content)
+                }
             }
 
-            CONTENT_TYPE_SECOND_NAME -> {
-                model = model.copy(secondName = content)
-            }
-
-            CONTENT_TYPE_DATE -> {
-                model = model.copy(date = content)
-            }
-
-            CONTENT_TYPE_COUNTRY -> {
-                model = model.copy(country = content)
-            }
-
-            CONTENT_TYPE_PASSPORT_DATE -> {
-                model = model.copy(passportDate = content)
-            }
-
-            CONTENT_TYPE_PASSPORT_NUM -> {
-                model = model.copy(passportNum = content)
-            }
+            listTourist = listTourist.map { if (it.id == itemId) model else it }.toMutableList()
         }
-
-        listTourist = listTourist.map { if (it.id == itemId) model else it }.toMutableList()
-
     }
 
 
@@ -100,6 +123,13 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
         viewModelScope.launch {
             reserveModel = repository.getHotelReserved()
         }
+    }
+
+    fun reset() {
+        listTourist.clear()
+        listTourist.add(newModelTourist.copy(id = 0))
+        listTourist.add(newModelTourist.copy(typeView = TouristViewType.TypeAddTourist))
+        reservedCompleted.value = false
     }
 
     init {

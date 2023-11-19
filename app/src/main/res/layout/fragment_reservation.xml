@@ -563,6 +563,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="20dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
