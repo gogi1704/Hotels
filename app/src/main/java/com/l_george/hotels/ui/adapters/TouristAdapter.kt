@@ -2,12 +2,20 @@ package com.l_george.hotels.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.l_george.hotels.R
 import com.l_george.hotels.databinding.TouristItemLayoutBinding
+import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_COUNTRY
+import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_DATE
+import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_NAME
+import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_PASSPORT_DATE
+import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_PASSPORT_NUM
+import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_SECOND_NAME
 import com.l_george.hotels.domain.models.touristModel.TouristModel
 import com.l_george.hotels.domain.models.touristModel.TouristViewType
 import com.l_george.hotels.ui.adapters.callBacks.TouristCallBack
@@ -15,6 +23,8 @@ import com.l_george.hotels.ui.adapters.callBacks.TouristCallBack
 interface TouristClickListener {
     fun addTourist()
     fun open(itemId: Int, isOpen: Boolean)
+
+    fun saveData(itemId: Int , contentType:String , content:String)
 }
 
 class TouristAdapter(private val listener: TouristClickListener) :
@@ -33,6 +43,47 @@ class TouristAdapter(private val listener: TouristClickListener) :
                     touristInfo.visibility = View.GONE
                 }
 
+                inputName.onFocusChangeListener =
+                    OnFocusChangeListener { v, hasFocus ->
+                        if (!hasFocus){
+                            listener.saveData(item.id , CONTENT_TYPE_NAME , inputName.text.toString())
+                        }
+                    }
+
+                inputSecondName.onFocusChangeListener =
+                    OnFocusChangeListener { v, hasFocus ->
+                        if (!hasFocus){
+                            listener.saveData(item.id , CONTENT_TYPE_SECOND_NAME , inputSecondName.text.toString())
+                        }
+                    }
+
+                inputDate.onFocusChangeListener =
+                    OnFocusChangeListener { v, hasFocus ->
+                        if (!hasFocus){
+                            listener.saveData(item.id , CONTENT_TYPE_DATE , inputDate.text.toString())
+                        }
+                    }
+
+                inputCountry.onFocusChangeListener =
+                    OnFocusChangeListener { v, hasFocus ->
+                        if (!hasFocus){
+                            listener.saveData(item.id , CONTENT_TYPE_COUNTRY , inputCountry.text.toString())
+                        }
+                    }
+
+                inputPasportNum.onFocusChangeListener =
+                    OnFocusChangeListener { v, hasFocus ->
+                        if (!hasFocus){
+                            listener.saveData(item.id , CONTENT_TYPE_PASSPORT_NUM , inputPasportNum.text.toString())
+                        }
+                    }
+
+                inputPasportDate.onFocusChangeListener =
+                    OnFocusChangeListener { v, hasFocus ->
+                        if (!hasFocus){
+                            listener.saveData(item.id , CONTENT_TYPE_PASSPORT_DATE , inputPasportDate.text.toString())
+                        }
+                    }
 
                 when (item.typeView) {
                     TouristViewType.TypeAddTourist -> {
@@ -55,10 +106,12 @@ class TouristAdapter(private val listener: TouristClickListener) :
                         inputName.setText(item.name)
                         inputSecondName.setText(item.secondName)
                         inputDate.setText(item.date)
-                        inputPasportNum.setText(item.passportNum)
+                        inputPasportNum.setText(item.passportNum.toString())
                         inputPasportDate.setText(item.passportDate)
                     }
+
                 }
+
             }
         }
     }

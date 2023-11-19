@@ -52,6 +52,10 @@ class ReservationFragment : Fragment() {
             override fun open(itemId: Int, isOpen: Boolean) {
                 reserveViewModel.openTouristItem(itemId, isOpen)
             }
+
+            override fun saveData(itemId: Int, contentType: String, content: String) {
+              reserveViewModel.saveDate(itemId, contentType, content)
+            }
         })
 
         with(binding) {
