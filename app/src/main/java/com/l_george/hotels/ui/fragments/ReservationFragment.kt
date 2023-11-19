@@ -50,11 +50,12 @@ class ReservationFragment : Fragment() {
             }
 
             override fun open(itemId: Int, isOpen: Boolean) {
+                clearFocusFromChildren(binding.recyclerTourist)
                 reserveViewModel.openTouristItem(itemId, isOpen)
             }
 
             override fun saveData(itemId: Int, contentType: String, content: String) {
-              reserveViewModel.saveDate(itemId, contentType, content)
+                reserveViewModel.saveDate(itemId, contentType, content)
             }
         })
 
@@ -70,7 +71,8 @@ class ReservationFragment : Fragment() {
             }
 
             buttonComplete.setOnClickListener {
-
+                clearFocusFromChildren(recyclerTourist)
+                reserveViewModel.checkAll()
             }
 
 
@@ -87,6 +89,14 @@ class ReservationFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun clearFocusFromChildren(view: View) {
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                clearFocusFromChildren(view.getChildAt(i))
+            }
+        } else (view as? EditText)?.clearFocus()
     }
 
     private fun fillScreenData(it: ReserveModel) {

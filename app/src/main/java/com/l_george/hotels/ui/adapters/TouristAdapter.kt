@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.l_george.hotels.R
@@ -24,7 +22,7 @@ interface TouristClickListener {
     fun addTourist()
     fun open(itemId: Int, isOpen: Boolean)
 
-    fun saveData(itemId: Int , contentType:String , content:String)
+    fun saveData(itemId: Int, contentType: String, content: String)
 }
 
 class TouristAdapter(private val listener: TouristClickListener) :
@@ -32,10 +30,11 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
     class TouristViewHolder(
         private val binding: TouristItemLayoutBinding,
-        private val listener: TouristClickListener
+        private val listener: TouristClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TouristModel) {
+
             with(binding) {
                 if (item.isOpen) {
                     touristInfo.visibility = View.VISIBLE
@@ -45,43 +44,59 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                 inputName.onFocusChangeListener =
                     OnFocusChangeListener { v, hasFocus ->
-                        if (!hasFocus){
-                            listener.saveData(item.id , CONTENT_TYPE_NAME , inputName.text.toString())
+                        if (!hasFocus) {
+                            listener.saveData(item.id, CONTENT_TYPE_NAME, inputName.text.toString())
                         }
                     }
 
                 inputSecondName.onFocusChangeListener =
                     OnFocusChangeListener { v, hasFocus ->
-                        if (!hasFocus){
-                            listener.saveData(item.id , CONTENT_TYPE_SECOND_NAME , inputSecondName.text.toString())
+                        if (!hasFocus) {
+                            listener.saveData(
+                                item.id,
+                                CONTENT_TYPE_SECOND_NAME,
+                                inputSecondName.text.toString()
+                            )
                         }
                     }
 
                 inputDate.onFocusChangeListener =
                     OnFocusChangeListener { v, hasFocus ->
-                        if (!hasFocus){
-                            listener.saveData(item.id , CONTENT_TYPE_DATE , inputDate.text.toString())
+                        if (!hasFocus) {
+                            listener.saveData(item.id, CONTENT_TYPE_DATE, inputDate.text.toString())
                         }
                     }
 
                 inputCountry.onFocusChangeListener =
                     OnFocusChangeListener { v, hasFocus ->
-                        if (!hasFocus){
-                            listener.saveData(item.id , CONTENT_TYPE_COUNTRY , inputCountry.text.toString())
+                        if (!hasFocus) {
+                            listener.saveData(
+                                item.id,
+                                CONTENT_TYPE_COUNTRY,
+                                inputCountry.text.toString()
+                            )
                         }
                     }
 
                 inputPasportNum.onFocusChangeListener =
                     OnFocusChangeListener { v, hasFocus ->
-                        if (!hasFocus){
-                            listener.saveData(item.id , CONTENT_TYPE_PASSPORT_NUM , inputPasportNum.text.toString())
+                        if (!hasFocus) {
+                            listener.saveData(
+                                item.id,
+                                CONTENT_TYPE_PASSPORT_NUM,
+                                inputPasportNum.text.toString()
+                            )
                         }
                     }
 
                 inputPasportDate.onFocusChangeListener =
                     OnFocusChangeListener { v, hasFocus ->
-                        if (!hasFocus){
-                            listener.saveData(item.id , CONTENT_TYPE_PASSPORT_DATE , inputPasportDate.text.toString())
+                        if (!hasFocus) {
+                            listener.saveData(
+                                item.id,
+                                CONTENT_TYPE_PASSPORT_DATE,
+                                inputPasportDate.text.toString()
+                            )
                         }
                     }
 
@@ -106,15 +121,58 @@ class TouristAdapter(private val listener: TouristClickListener) :
                         inputName.setText(item.name)
                         inputSecondName.setText(item.secondName)
                         inputDate.setText(item.date)
-                        inputPasportNum.setText(item.passportNum.toString())
+                        inputCountry.setText(item.country)
+                        inputPasportNum.setText(item.passportNum)
                         inputPasportDate.setText(item.passportDate)
+
+                        if (item.isChecked) {
+                            if (item.name.isEmpty()) {
+                                inputName.error = "Поле не может быть пустым !"
+                            } else {
+                                inputName.error = null
+                            }
+
+                            if (item.secondName.isEmpty()) {
+                                inputSecondName.error = "Поле не может быть пустым !"
+                            } else {
+                                inputSecondName.error = null
+                            }
+
+                            if (item.date.isEmpty()) {
+                                inputDate.error = "Поле не может быть пустым !"
+                            } else {
+                                inputDate.error = null
+                            }
+
+                            if (item.country.isEmpty()) {
+                                inputCountry.error = "Поле не может быть пустым !"
+
+                            } else {
+                                inputCountry.error = null
+                            }
+
+                            if (item.passportNum.isEmpty()) {
+                                inputPasportNum.error = "Поле не может быть пустым !"
+
+                            } else {
+                                inputPasportNum.error = null
+                            }
+
+                            if (item.passportDate.isEmpty()) {
+                                inputPasportDate.error = "Поле не может быть пустым !"
+                            } else {
+                                inputPasportDate.error = null
+                            }
+                        }
                     }
 
                 }
 
+
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TouristViewHolder {
         val binding =
@@ -127,6 +185,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
     }
 
 }
+
 
 private fun getTouristNumberById(id: Int): String {
     return when (id) {

@@ -9,7 +9,8 @@ data class TouristModel(
     val passportNum: String,
     val passportDate: String,
     val typeView: TouristViewType,
-    val isOpen:Boolean = false
+    val isOpen:Boolean = false,
+    val isChecked:Boolean = false
 )
 
 sealed class TouristViewType() {

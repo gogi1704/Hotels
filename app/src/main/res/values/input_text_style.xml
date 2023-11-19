@@ -4,7 +4,7 @@
 
         <item name="hintTextColor">@color/text_grey</item>
         <item name="boxBackgroundColor">@color/text_bg_grey</item>
-
+        <item name="cursorColor">@color/text_blue</item>
 
     </style>
 </resources>

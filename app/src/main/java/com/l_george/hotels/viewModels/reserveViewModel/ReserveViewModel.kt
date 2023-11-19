@@ -35,14 +35,14 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
     val listTouristLiveData = MutableLiveData(listTourist)
 
     private val newModelTourist = TouristModel(
-        1000,
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        TouristViewType.TypeTourist
+        id = 1000,
+        name = "",
+        secondName = "",
+        date = "",
+        country = "",
+        passportNum = "",
+        passportDate = "",
+        typeView = TouristViewType.TypeTourist
     )
 
 
@@ -57,6 +57,10 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
         listTourist =
             listTourist.map { if (it.id == itemId) it.copy(isOpen = !isOpen) else it }
                 .toMutableList()
+    }
+
+    fun checkAll() {
+        listTourist = listTourist.map { it.copy(isChecked = true) }.toMutableList()
     }
 
     fun saveDate(itemId: Int, contentType: String, content: String) {
