@@ -40,7 +40,6 @@ class HotelsFragment : Fragment() {
     ): View {
         binding = FragmentHotelsBinding.inflate(layoutInflater, container, false)
 
-        viewModel.getHotel()
 
         with(binding) {
             recyclerPerculiarities = recyclerViewPer.apply {

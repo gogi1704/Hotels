@@ -22,25 +22,30 @@ class RoomFragment : Fragment() {
     private lateinit var roomViewModel: RoomViewModel
     private lateinit var roomsRecyclerView: RecyclerView
     private lateinit var roomAdapter: RoomAdapter
-
     @Inject
     lateinit var viewModelFactory: RoomViewModelFactory
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentRoomBinding.inflate(layoutInflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         (requireActivity().applicationContext as HotelApp).appComponent.inject(this)
-
         roomViewModel = ViewModelProvider(owner = this, viewModelFactory)[RoomViewModel::class.java]
-
         roomAdapter = RoomAdapter(object : RoomClickListener {
             override fun openRoom(roomId: Int) {
                 findNavController().navigate(R.id.action_roomFragment_to_reservationFragment)
 
             }
         })
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentRoomBinding.inflate(layoutInflater, container, false)
+
+
 
         with(binding) {
             roomsRecyclerView = recyclerRooms.apply {

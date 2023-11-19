@@ -29,21 +29,21 @@ class ReservationFragment : Fragment() {
     lateinit var reserveViewModelFactory: ReserveViewModelFactory
     private lateinit var reserveViewModel: ReserveViewModel
     private lateinit var adapter: TouristAdapter
+    private lateinit var mask:MaskImpl
+    private lateinit var formatWatcher:MaskFormatWatcher
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentReservationBinding.inflate(layoutInflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         (requireActivity().applicationContext as HotelApp).appComponent.inject(this)
         reserveViewModel =
             ViewModelProvider(this, reserveViewModelFactory)[ReserveViewModel::class.java]
 
-        val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER).apply {
+
+        mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER).apply {
             placeholder = '*'
             isShowingEmptySlots = true
         }
-        val formatWatcher = MaskFormatWatcher(mask)
+        formatWatcher = MaskFormatWatcher(mask)
 
         adapter = TouristAdapter(object : TouristClickListener {
             override fun addTourist() {
@@ -59,6 +59,16 @@ class ReservationFragment : Fragment() {
                 reserveViewModel.saveDate(itemId, contentType, content)
             }
         })
+    }
+
+
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentReservationBinding.inflate(layoutInflater, container, false)
 
         with(binding) {
             formatWatcher.installOn(inputNumber)

@@ -24,12 +24,16 @@ class HotelViewModel(private val repository: HotelRepository) : ViewModel() {
         }
     val hotelImagesLiveData = MutableLiveData(hotelImages)
 
-    fun getHotel() {
+   private fun getHotel() {
         viewModelScope.launch {
             val hotelFromApi = repository.getHotel()
             hotel = hotelFromApi
             hotelImages = hotelFromApi.image_urls.map { CarouselItem(imageUrl = it) }
         }
+    }
+
+    init {
+        getHotel()
     }
 
 }

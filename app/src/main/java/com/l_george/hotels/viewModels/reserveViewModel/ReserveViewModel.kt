@@ -49,16 +49,21 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
 
 
     fun addNewTourist() {
-        val newList = listTourist
-        newList.add(newModelTourist.copy(id = listTourist.size - 1))
-        listTourist = newList.sortedWith(compareBy { it.id }).toMutableList()
+        viewModelScope.launch {
+            val newList = listTourist
+            newList.add(newModelTourist.copy(id = listTourist.size - 1))
+            listTourist = newList.sortedWith(compareBy { it.id }).toMutableList()
+        }
+
     }
 
     fun openTouristItem(itemId: Int, isOpen: Boolean) {
+        viewModelScope.launch {
+            listTourist =
+                listTourist.map { if (it.id == itemId) it.copy(isOpen = !isOpen) else it }
+                    .toMutableList()
+        }
 
-        listTourist =
-            listTourist.map { if (it.id == itemId) it.copy(isOpen = !isOpen) else it }
-                .toMutableList()
     }
 
     fun checkAll() {
