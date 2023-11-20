@@ -43,10 +43,10 @@ dependencies {
     val lifecycle_version = "2.6.2"
     val okhttplogging_version = "4.10.0"
     val nav_version = "2.7.5"
-
-
-
     implementation(project(":domain"))
+
+
+
     implementation(project(":data"))
 
 

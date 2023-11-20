@@ -3,7 +3,7 @@ package com.l_george.hotels.viewModels.roomViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.l_george.hotels.data.repository.HotelRepository
+import com.l_george.domain2.repository.DomainRepository
 import com.l_george.hotels.domain.models.roomModel.RoomModel
 import com.l_george.hotels.exceptions.ApiError
 import com.l_george.hotels.exceptions.AppExceptions
@@ -11,7 +11,7 @@ import com.l_george.hotels.exceptions.NetworkError
 import com.l_george.hotels.exceptions.UnknownError
 import kotlinx.coroutines.launch
 
-class RoomViewModel(private val repository: HotelRepository) : ViewModel() {
+class RoomViewModel(private val repository: DomainRepository) : ViewModel() {
 
     val progressState = MutableLiveData(false)
 

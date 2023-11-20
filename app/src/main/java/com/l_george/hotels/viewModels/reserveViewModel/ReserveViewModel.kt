@@ -3,7 +3,7 @@ package com.l_george.hotels.viewModels.reserveViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.l_george.hotels.data.repository.HotelRepository
+import com.l_george.domain2.repository.DomainRepository
 import com.l_george.hotels.domain.models.reserveModel.ReserveModel
 import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_COUNTRY
 import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_DATE
@@ -20,7 +20,7 @@ import com.l_george.hotels.exceptions.UnknownError
 import kotlinx.coroutines.launch
 
 
-class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
+class ReserveViewModel(private val repository: DomainRepository) : ViewModel() {
 
     val progressState = MutableLiveData(false)
 

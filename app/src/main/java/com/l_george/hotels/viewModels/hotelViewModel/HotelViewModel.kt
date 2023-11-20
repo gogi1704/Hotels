@@ -3,7 +3,7 @@ package com.l_george.hotels.viewModels.hotelViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.l_george.hotels.data.repository.HotelRepository
+import com.l_george.domain2.repository.DomainRepository
 import com.l_george.hotels.domain.models.hotelModel.HotelModel
 import com.l_george.hotels.exceptions.ApiError
 import com.l_george.hotels.exceptions.AppExceptions
@@ -12,7 +12,7 @@ import com.l_george.hotels.exceptions.UnknownError
 import kotlinx.coroutines.launch
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
-class HotelViewModel(private val repository: HotelRepository) : ViewModel() {
+class HotelViewModel(private val repository: DomainRepository) : ViewModel() {
 
     val progressState = MutableLiveData(false)
     private var error:AppExceptions? = null

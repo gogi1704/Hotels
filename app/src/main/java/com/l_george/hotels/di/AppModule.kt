@@ -1,7 +1,7 @@
 package com.l_george.hotels.di
 
 import android.content.Context
-import com.l_george.hotels.data.repository.HotelRepository
+import com.l_george.domain2.repository.DomainRepository
 import com.l_george.hotels.viewModels.hotelViewModel.HotelViewModelFactory
 import com.l_george.hotels.viewModels.reserveViewModel.ReserveViewModelFactory
 import com.l_george.hotels.viewModels.roomViewModel.RoomViewModelFactory
@@ -16,18 +16,18 @@ class AppModule(private val context: Context) {
     fun provideContext(): Context = context
 
     @Provides
-    fun provideHotelViewModelFactory(repository: HotelRepository): HotelViewModelFactory {
+    fun provideHotelViewModelFactory(repository: DomainRepository): HotelViewModelFactory {
         return HotelViewModelFactory(repository)
     }
 
 
     @Provides
-    fun provideRoomViewModelFactory(repository: HotelRepository): RoomViewModelFactory {
+    fun provideRoomViewModelFactory(repository: DomainRepository): RoomViewModelFactory {
         return RoomViewModelFactory(repository)
     }
 
     @Provides
-    fun provideReserveViewModelFactory(repository: HotelRepository): ReserveViewModelFactory {
+    fun provideReserveViewModelFactory(repository: DomainRepository): ReserveViewModelFactory {
         return ReserveViewModelFactory(repository)
     }
 
