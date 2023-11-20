@@ -38,4 +38,10 @@
     <string name="hint_country">Гражданство</string>
     <string name="hint_pass_num">Номер загран паспорта</string>
     <string name="hint_pass_date">Срок действия загранпаспорта</string>
+
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="text_error1">Поле не может быть пустым !</string>
+    <string name="text_error2">Проверьте валидность данных !</string>
+    <string name="toast1">Заполните все поля</string>
+    <string name="byu">Оплатить</string>
 </resources>

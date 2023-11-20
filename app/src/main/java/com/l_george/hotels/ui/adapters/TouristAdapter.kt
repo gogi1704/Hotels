@@ -1,5 +1,6 @@
 package com.l_george.hotels.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -25,12 +26,13 @@ interface TouristClickListener {
     fun saveData(itemId: Int, contentType: String, content: String)
 }
 
-class TouristAdapter(private val listener: TouristClickListener) :
+class TouristAdapter(private val listener: TouristClickListener, private val context: Context) :
     ListAdapter<TouristModel, TouristAdapter.TouristViewHolder>(TouristCallBack()) {
 
     class TouristViewHolder(
         private val binding: TouristItemLayoutBinding,
         private val listener: TouristClickListener,
+        private val context: Context
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TouristModel) {
@@ -45,14 +47,14 @@ class TouristAdapter(private val listener: TouristClickListener) :
                 }
 
                 inputName.onFocusChangeListener =
-                    OnFocusChangeListener { v, hasFocus ->
+                    OnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) {
                             listener.saveData(item.id, CONTENT_TYPE_NAME, inputName.text.toString())
                         }
                     }
 
                 inputSecondName.onFocusChangeListener =
-                    OnFocusChangeListener { v, hasFocus ->
+                    OnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) {
                             listener.saveData(
                                 item.id,
@@ -63,14 +65,14 @@ class TouristAdapter(private val listener: TouristClickListener) :
                     }
 
                 inputDate.onFocusChangeListener =
-                    OnFocusChangeListener { v, hasFocus ->
+                    OnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) {
                             listener.saveData(item.id, CONTENT_TYPE_DATE, inputDate.text.toString())
                         }
                     }
 
                 inputCountry.onFocusChangeListener =
-                    OnFocusChangeListener { v, hasFocus ->
+                    OnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) {
                             listener.saveData(
                                 item.id,
@@ -92,7 +94,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
                     }
 
                 inputPasportDate.onFocusChangeListener =
-                    OnFocusChangeListener { v, hasFocus ->
+                    OnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) {
                             listener.saveData(
                                 item.id,
@@ -104,7 +106,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                 when (item.typeView) {
                     TouristViewType.TypeAddTourist -> {
-                        textTouristNumber.text = "Добавить туриста"
+                        textTouristNumber.text = context.getString(R.string.add_tourist)
                         buttonOpen.setImageResource(R.drawable.button_add)
                         buttonOpen.setOnClickListener {
                             listener.addTourist()
@@ -129,7 +131,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                         if (item.isChecked) {
                             if (item.name.isEmpty()) {
-                                inputName.error = "Поле не может быть пустым !"
+                                inputName.error = context.getString(R.string.text_error1)
                                 nameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                             } else {
                                 nameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
@@ -137,7 +139,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
                             }
 
                             if (item.secondName.isEmpty()) {
-                                inputSecondName.error = "Поле не может быть пустым !"
+                                inputSecondName.error = context.getString(R.string.text_error1)
                                 secondNameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
 
                             } else {
@@ -147,7 +149,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                             if (item.date.isEmpty()) {
                                 dateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
-                                inputDate.error = "Поле не может быть пустым !"
+                                inputDate.error = context.getString(R.string.text_error1)
                             } else {
                                 dateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputDate.error = null
@@ -155,7 +157,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                             if (item.country.isEmpty()) {
                                 countryInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
-                                inputCountry.error = "Поле не может быть пустым !"
+                                inputCountry.error = context.getString(R.string.text_error1)
 
                             } else {
                                 inputCountry.error = null
@@ -165,7 +167,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                             if (item.passportNum.isEmpty()) {
                                 pasportNumInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
-                                inputPasportNum.error = "Поле не может быть пустым !"
+                                inputPasportNum.error = context.getString(R.string.text_error1)
 
                             } else {
                                 pasportNumInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
@@ -174,7 +176,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
 
                             if (item.passportDate.isEmpty()) {
                                 pasportDateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
-                                inputPasportDate.error = "Поле не может быть пустым !"
+                                inputPasportDate.error = context.getString(R.string.text_error1)
                             } else {
                                 pasportDateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputPasportDate.error = null
@@ -193,7 +195,7 @@ class TouristAdapter(private val listener: TouristClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TouristViewHolder {
         val binding =
             TouristItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TouristViewHolder(binding, listener)
+        return TouristViewHolder(binding, listener, context)
     }
 
     override fun onBindViewHolder(holder: TouristViewHolder, position: Int) {

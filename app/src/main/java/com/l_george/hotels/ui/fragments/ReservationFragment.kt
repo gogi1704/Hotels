@@ -59,7 +59,7 @@ class ReservationFragment : Fragment() {
             override fun saveData(itemId: Int, contentType: String, content: String) {
                 reserveViewModel.saveDate(itemId, contentType, content)
             }
-        })
+        } , requireContext())
     }
 
 
@@ -77,7 +77,7 @@ class ReservationFragment : Fragment() {
             inputEmail.onFocusChangeListener =
                 View.OnFocusChangeListener { v, hasFocus ->
                     if (!hasFocus && !inputEmail.isEmailValid()) {
-                        inputEmail.error = "проверьте валидность данных"
+                        inputEmail.error = getString(R.string.text_error2)
                         emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                     }else{
                         emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
@@ -88,7 +88,7 @@ class ReservationFragment : Fragment() {
             inputNumber.onFocusChangeListener =
                 View.OnFocusChangeListener { v, hasFocus ->
                     if (!hasFocus && !inputNumber.isPhoneValid()) {
-                        inputNumber.error = "проверьте валидность данных"
+                        inputNumber.error = getString(R.string.text_error2)
                         numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                     }else{
                         numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
@@ -99,14 +99,14 @@ class ReservationFragment : Fragment() {
                 clearFocusFromChildren(recyclerTourist)
                 clearFocusFromChildren(byuerInfoBlock)
                 if (inputNumber.text.toString().isEmpty() || !inputNumber.isPhoneValid()) {
-                    inputNumber.error = "проверьте валидность данных"
+                    inputNumber.error = getString(R.string.text_error2)
                     numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                 }else{
                     numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                 }
 
                 if (inputEmail.text.toString().isEmpty() || !inputEmail.isEmailValid()) {
-                    inputEmail.error = "проверьте валидность данных"
+                    inputEmail.error = getString(R.string.text_error2)
                     emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                 }else{
                     emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
@@ -141,7 +141,7 @@ class ReservationFragment : Fragment() {
                         findNavController().navigate(R.id.action_reservationFragment_to_completeFragment)
                         reserveViewModel.reset()
                     } else {
-                        Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), getString(R.string.toast1), Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
@@ -185,7 +185,7 @@ class ReservationFragment : Fragment() {
             textServicePriceInput.text = it.service_charge.toString()
             textFinalPriceInput.text = fullPrice.toString()
             buttonComplete.text = StringBuilder()
-                .append("Оплатить")
+                .append(getString(R.string.byu))
                 .append(" ")
                 .append(fullPrice.toString())
         }
