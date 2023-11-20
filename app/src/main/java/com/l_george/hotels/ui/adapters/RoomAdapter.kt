@@ -32,7 +32,11 @@ class RoomAdapter(private val listener: RoomClickListener) :
                 rec.adapter = PeculiaritiesAdapter(item.peculiarities)
 
                 textName.text = item.name
-                textPrice.text = item.price.toString()
+                textPrice.text =  buildString {
+                    append(item.price)
+                    append(" ")
+                    append(String(Character.toChars(0x20BD)))
+                }
                 priceForIt.text = item.price_per
                 buttonOpenRoom.setOnClickListener {
                     listener.openRoom(item.id)

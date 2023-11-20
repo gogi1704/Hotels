@@ -63,6 +63,8 @@ class HotelsFragment : Fragment() {
                     textPrice.text = buildString {
                         append("oт ")
                         append(it.minimal_price)
+                        append(" ")
+                        append(String(Character.toChars(0x20BD)))
                     }
                     textName.text = it.name
                     rating.text = it.rating.toString()

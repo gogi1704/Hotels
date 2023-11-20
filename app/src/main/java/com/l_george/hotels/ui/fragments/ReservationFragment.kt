@@ -180,10 +180,26 @@ class ReservationFragment : Fragment() {
                 append(it.tour_date_stop)
             }
 
-            textTourInput.text = it.tour_price.toString()
-            textFuelPriceInput.text = it.fuel_charge.toString()
-            textServicePriceInput.text = it.service_charge.toString()
-            textFinalPriceInput.text = fullPrice.toString()
+            textTourInput.text = buildString {
+                append(it.tour_price.toString())
+                append(" ")
+                append(String(Character.toChars(0x20BD)))
+            }
+            textFuelPriceInput.text =  buildString {
+                append(it.fuel_charge.toString())
+                append(" ")
+                append(String(Character.toChars(0x20BD)))
+            }
+            textServicePriceInput.text =  buildString {
+                append(it.service_charge.toString())
+                append(" ")
+                append(String(Character.toChars(0x20BD)))
+            }
+            textFinalPriceInput.text =  buildString {
+                append(fullPrice)
+                append(" ")
+                append(String(Character.toChars(0x20BD)))
+            }
             buttonComplete.text = StringBuilder()
                 .append(getString(R.string.byu))
                 .append(" ")
