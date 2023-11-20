@@ -11,4 +11,31 @@
 
     <string name="text_reserv_part1">Подтверждение заказа №</string>
     <string name="text_reserv_part2">может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
+    <string name="reserve">Бронирование</string>
+    <string name="order_complete">Ваш заказ принят в работу</string>
+    <string name="nice">Супер!</string>
+    <string name="hotel">Отель</string>
+    <string name="about_hotel">Об отеле</string>
+    <string name="enemies">Удобства</string>
+    <string name="most_famous">Самое необходимое</string>
+    <string name="what_inclusive">Что включено</string>
+    <string name="what_not_inclusive">Что не включено</string>
+    <string name="to_choose_room">К выбору номера</string>
+    <string name="reserving">Бронирование</string>
+    <string name="byer_info">Информация о покупателе</string>
+    <string name="hint_num_phone">Номер телефона</string>
+    <string name="hint_email">Почта</string>
+    <string name="text_warning">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_price">Топливный сбор</string>
+    <string name="service_price">Сервисный сбор</string>
+    <string name="final_price">К оплате</string>
+    <string name="to_room_info">Подробнее о номере</string>
+    <string name="choose_room">Выбрать номер</string>
+    <string name="hint_name">Имя</string>
+    <string name="hint_second_name">Фамилия</string>
+    <string name="hint_date">Дата рождения</string>
+    <string name="hint_country">Гражданство</string>
+    <string name="hint_pass_num">Номер загран паспорта</string>
+    <string name="hint_pass_date">Срок действия загранпаспорта</string>
 </resources>

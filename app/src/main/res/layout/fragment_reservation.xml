@@ -22,7 +22,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="Бронирование"
+            android:text="@string/reserving"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -33,7 +33,8 @@
             android:layout_gravity="center|start"
             android:layout_marginStart="16dp"
             android:padding="16dp"
-            android:src="@drawable/button_back" />
+            android:src="@drawable/button_back"
+            tools:ignore="ContentDescription" />
 
     </FrameLayout>
 
@@ -72,7 +73,8 @@
                         android:padding="4dp"
                         android:src="@drawable/icon_star"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_carousel" />
+                        app:layout_constraintTop_toBottomOf="@id/card_carousel"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/rating"
@@ -251,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="39dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_location"
@@ -263,7 +265,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/text_departure"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -277,7 +279,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="39dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_location"
@@ -289,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="39dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_location"
@@ -301,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="39dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_location"
@@ -314,7 +316,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="39dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_location"
@@ -327,7 +329,7 @@
                     android:layout_marginStart="39dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Egypt"
+                    tools:text="Egypt"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -350,7 +352,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Информация о покупателе"
+                    android:text="@string/byer_info"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -364,7 +366,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="Номер телефона"
+                    android:hint="@string/hint_num_phone"
                     android:textColorHint="@color/text_grey"
                     app:layout_constraintTop_toBottomOf="@+id/textView2">
 
@@ -385,7 +387,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="Почта"
+                    android:hint="@string/hint_email"
                     android:textColorHint="@color/text_grey"
                     app:errorEnabled="true"
                     app:layout_constraintTop_toBottomOf="@id/number_input_layout">
@@ -406,7 +408,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту"
+                    android:text="@string/text_warning"
                     android:textColor="@color/text_grey"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -448,7 +450,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Тур"
+                    android:text="@string/tour"
                     android:textColor="@color/text_grey"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -475,7 +477,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Топливный сбор"
+                    android:text="@string/fuel_price"
                     android:textColor="@color/text_grey"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -502,7 +504,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Сервисный сбор"
+                    android:text="@string/service_price"
                     android:textColor="@color/text_grey"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -528,7 +530,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="К оплате"
+                    android:text="@string/final_price"
                     android:textColor="@color/text_grey"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -576,7 +578,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="21dp"
             android:background="@drawable/button_blue_corners"
-            android:text="Оплатить 100"
+            tools:text="Оплатить 100"
             android:textColor="@color/white" />
 
     </androidx.cardview.widget.CardView>

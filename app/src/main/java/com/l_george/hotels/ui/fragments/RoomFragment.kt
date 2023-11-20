@@ -45,10 +45,11 @@ class RoomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentRoomBinding.inflate(layoutInflater, container, false)
-
-
+        val hotelName = arguments?.getString("name_hotel")
 
         with(binding) {
+            textMainTitle.text = hotelName
+
             roomsRecyclerView = recyclerRooms.apply {
                 adapter = roomAdapter
             }

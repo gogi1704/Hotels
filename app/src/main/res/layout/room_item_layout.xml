@@ -74,8 +74,9 @@
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="Подробнее о номере"
-            android:textColor="@color/text_blue" />
+            android:text="@string/to_room_info"
+            android:textColor="@color/text_blue"
+            tools:ignore="RtlSymmetry" />
 
         <ImageView
             android:layout_width="20dp"
@@ -85,7 +86,8 @@
             android:layout_marginEnd="4dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:src="@drawable/button_next_blue" />
+            android:src="@drawable/button_next_blue"
+            tools:ignore="ContentDescription" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -125,7 +127,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_blue_corners"
-        android:text="Выбрать номер"
+        android:text="@string/choose_room"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_price" />

@@ -84,7 +84,9 @@ class HotelsFragment : Fragment() {
             }
 
             buttonToRooms.setOnClickListener {
-                findNavController().navigate(R.id.action_hotelsFragment_to_roomFragment)
+                findNavController().navigate(R.id.action_hotelsFragment_to_roomFragment , Bundle().apply {
+                    putString("name_hotel" , textName.text.toString())
+                })
             }
         }
 
