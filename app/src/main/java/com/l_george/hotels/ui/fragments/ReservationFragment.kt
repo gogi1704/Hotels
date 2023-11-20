@@ -30,8 +30,8 @@ class ReservationFragment : Fragment() {
     lateinit var reserveViewModelFactory: ReserveViewModelFactory
     private lateinit var reserveViewModel: ReserveViewModel
     private lateinit var adapter: TouristAdapter
-    private lateinit var mask:MaskImpl
-    private lateinit var formatWatcher:MaskFormatWatcher
+    private lateinit var mask: MaskImpl
+    private lateinit var formatWatcher: MaskFormatWatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,8 +61,6 @@ class ReservationFragment : Fragment() {
             }
         })
     }
-
-
 
 
     override fun onCreateView(
@@ -101,7 +99,6 @@ class ReservationFragment : Fragment() {
 
                 if (inputEmail.text.toString().isEmpty() || !inputEmail.isEmailValid()) {
                     inputEmail.error = "проверьте валидность данных"
-
                 }
                 reserveViewModel.checkAll()
             }
@@ -110,9 +107,9 @@ class ReservationFragment : Fragment() {
                 findNavController().navigateUp()
             }
 
-            reserveViewModel.errorLiveData.observe(viewLifecycleOwner){
-                if (it!=null){
-                    Toast.makeText(requireContext() , it.message , Toast.LENGTH_SHORT).show()
+            reserveViewModel.errorLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -127,10 +124,15 @@ class ReservationFragment : Fragment() {
                 }
             }
 
-            reserveViewModel.reservedCompleted.observe(viewLifecycleOwner) {
-                if (it && inputNumber.isPhoneValid() && inputEmail.isEmailValid()) {
-                    findNavController().navigate(R.id.action_reservationFragment_to_completeFragment)
-                    reserveViewModel.reset()
+            reserveViewModel.reservedCompletedMutableLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    if (it && inputNumber.isPhoneValid() && inputEmail.isEmailValid()) {
+                        findNavController().navigate(R.id.action_reservationFragment_to_completeFragment)
+                        reserveViewModel.reset()
+                    } else {
+                        Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
             }
         }
@@ -171,6 +173,10 @@ class ReservationFragment : Fragment() {
             textFuelPriceInput.text = it.fuel_charge.toString()
             textServicePriceInput.text = it.service_charge.toString()
             textFinalPriceInput.text = fullPrice.toString()
+            buttonComplete.text = StringBuilder()
+                .append("Оплатить")
+                .append(" ")
+                .append(fullPrice.toString())
         }
     }
 

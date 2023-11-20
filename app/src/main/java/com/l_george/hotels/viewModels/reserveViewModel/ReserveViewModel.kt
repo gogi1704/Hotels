@@ -44,8 +44,13 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
             listTouristLiveData.value = value
         }
     val listTouristLiveData = MutableLiveData(listTourist)
+    private var reservedCompleted: Boolean? = null
+        set(value) {
+            field = value
+            reservedCompletedMutableLiveData.value = value
+        }
 
-    val reservedCompleted = MutableLiveData(false)
+    val reservedCompletedMutableLiveData = MutableLiveData(reservedCompleted)
 
     private val newModelTourist = TouristModel(
         id = 1000,
@@ -95,7 +100,7 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
                     }
                 }
             }
-            reservedCompleted.value = isOk
+            reservedCompleted = isOk
 
         }
     }
@@ -155,7 +160,7 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
         error = null
         listTourist.add(newModelTourist.copy(id = 0))
         listTourist.add(newModelTourist.copy(typeView = TouristViewType.TypeAddTourist))
-        reservedCompleted.value = false
+        reservedCompleted = null
     }
 
     init {

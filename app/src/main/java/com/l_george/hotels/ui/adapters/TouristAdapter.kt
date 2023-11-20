@@ -38,7 +38,9 @@ class TouristAdapter(private val listener: TouristClickListener) :
             with(binding) {
                 if (item.isOpen) {
                     touristInfo.visibility = View.VISIBLE
+                    buttonOpen.rotation = 180f
                 } else {
+                    buttonOpen.rotation = 0f
                     touristInfo.visibility = View.GONE
                 }
 
