@@ -1,6 +1,6 @@
 package com.l_george.hotels.di
 
-import com.l_george.hotels.MainActivity
+import com.l_george.hotels.ui.fragments.MainActivity
 import com.l_george.hotels.ui.fragments.HotelsFragment
 import com.l_george.hotels.ui.fragments.ReservationFragment
 import com.l_george.hotels.ui.fragments.RoomFragment

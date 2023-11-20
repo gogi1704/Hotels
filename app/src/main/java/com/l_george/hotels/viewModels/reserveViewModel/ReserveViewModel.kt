@@ -13,10 +13,21 @@ import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_PASSPORT_NUM
 import com.l_george.hotels.domain.models.touristModel.CONTENT_TYPE_SECOND_NAME
 import com.l_george.hotels.domain.models.touristModel.TouristModel
 import com.l_george.hotels.domain.models.touristModel.TouristViewType
+import com.l_george.hotels.exceptions.ApiError
+import com.l_george.hotels.exceptions.AppExceptions
+import com.l_george.hotels.exceptions.NetworkError
+import com.l_george.hotels.exceptions.UnknownError
 import kotlinx.coroutines.launch
 
 
 class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
+
+    private var error: AppExceptions? = null
+        set(value) {
+            field = value
+            errorLiveData.value = value
+        }
+    val errorLiveData = MutableLiveData(error)
 
     private var reserveModel: ReserveModel? = null
         set(value) {
@@ -126,12 +137,22 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
 
     private fun getReserveHotel() {
         viewModelScope.launch {
-            reserveModel = repository.getHotelReserved()
+            try {
+                reserveModel = repository.getHotelReserved()
+            } catch (api: ApiError) {
+                error = ApiError()
+            } catch (io: NetworkError) {
+                error = NetworkError()
+            } catch (unknown: UnknownError) {
+                error = UnknownError()
+            }
+
         }
     }
 
     fun reset() {
         listTourist.clear()
+        error = null
         listTourist.add(newModelTourist.copy(id = 0))
         listTourist.add(newModelTourist.copy(typeView = TouristViewType.TypeAddTourist))
         reservedCompleted.value = false

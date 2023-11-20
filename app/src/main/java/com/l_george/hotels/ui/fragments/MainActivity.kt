@@ -1,7 +1,8 @@
-package com.l_george.hotels
+package com.l_george.hotels.ui.fragments
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.l_george.hotels.R
 import com.l_george.hotels.app.HotelApp
 
 

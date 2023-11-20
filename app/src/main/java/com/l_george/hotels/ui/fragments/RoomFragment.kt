@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -55,6 +56,12 @@ class RoomFragment : Fragment() {
             roomViewModel.listRoomsLiveData.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     roomAdapter.submitList(it)
+                }
+            }
+
+            roomViewModel.errorLiveData.observe(viewLifecycleOwner){
+                if (it!=null){
+                    Toast.makeText(requireContext() , it.message , Toast.LENGTH_SHORT).show()
                 }
             }
 
