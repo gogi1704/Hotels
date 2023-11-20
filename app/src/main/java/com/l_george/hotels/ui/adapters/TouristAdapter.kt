@@ -130,39 +130,53 @@ class TouristAdapter(private val listener: TouristClickListener) :
                         if (item.isChecked) {
                             if (item.name.isEmpty()) {
                                 inputName.error = "Поле не может быть пустым !"
+                                nameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                             } else {
+                                nameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputName.error = null
                             }
 
                             if (item.secondName.isEmpty()) {
                                 inputSecondName.error = "Поле не может быть пустым !"
+                                secondNameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
+
                             } else {
+                                secondNameInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputSecondName.error = null
                             }
 
                             if (item.date.isEmpty()) {
+                                dateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                                 inputDate.error = "Поле не может быть пустым !"
                             } else {
+                                dateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputDate.error = null
                             }
 
                             if (item.country.isEmpty()) {
+                                countryInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                                 inputCountry.error = "Поле не может быть пустым !"
 
                             } else {
                                 inputCountry.error = null
+                                countryInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
+
                             }
 
                             if (item.passportNum.isEmpty()) {
+                                pasportNumInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                                 inputPasportNum.error = "Поле не может быть пустым !"
 
                             } else {
+                                pasportNumInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputPasportNum.error = null
                             }
 
                             if (item.passportDate.isEmpty()) {
+                                pasportDateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
                                 inputPasportDate.error = "Поле не может быть пустым !"
                             } else {
+                                pasportDateInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                                 inputPasportDate.error = null
                             }
                         }

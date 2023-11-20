@@ -78,15 +78,20 @@ class ReservationFragment : Fragment() {
                 View.OnFocusChangeListener { v, hasFocus ->
                     if (!hasFocus && !inputEmail.isEmailValid()) {
                         inputEmail.error = "проверьте валидность данных"
-
+                        emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
+                    }else{
+                        emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                     }
+
                 }
 
             inputNumber.onFocusChangeListener =
                 View.OnFocusChangeListener { v, hasFocus ->
                     if (!hasFocus && !inputNumber.isPhoneValid()) {
                         inputNumber.error = "проверьте валидность данных"
-
+                        numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
+                    }else{
+                        numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                     }
                 }
 
@@ -95,10 +100,16 @@ class ReservationFragment : Fragment() {
                 clearFocusFromChildren(byuerInfoBlock)
                 if (inputNumber.text.toString().isEmpty() || !inputNumber.isPhoneValid()) {
                     inputNumber.error = "проверьте валидность данных"
+                    numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
+                }else{
+                    numberInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                 }
 
                 if (inputEmail.text.toString().isEmpty() || !inputEmail.isEmailValid()) {
                     inputEmail.error = "проверьте валидность данных"
+                    emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_error)
+                }else{
+                    emailInputLayout.setBoxBackgroundColorResource(R.color.text_bg_normal)
                 }
                 reserveViewModel.checkAll()
             }
