@@ -85,6 +85,10 @@ class HotelsFragment : Fragment() {
                 }
             }
 
+            viewModel.progressState.observe(viewLifecycleOwner){
+                progress.visibility = if (it)View.VISIBLE else View.GONE
+            }
+
             buttonToRooms.setOnClickListener {
                 findNavController().navigate(R.id.action_hotelsFragment_to_roomFragment , Bundle().apply {
                     putString("name_hotel" , textName.text.toString())

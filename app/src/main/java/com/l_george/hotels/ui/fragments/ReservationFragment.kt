@@ -135,6 +135,10 @@ class ReservationFragment : Fragment() {
                 }
             }
 
+            reserveViewModel.progressState.observe(viewLifecycleOwner){
+                progress.visibility = if (it)View.VISIBLE else View.GONE
+            }
+
             reserveViewModel.reservedCompletedMutableLiveData.observe(viewLifecycleOwner) {
                 if (it != null) {
                     if (it && inputNumber.isPhoneValid() && inputEmail.isEmailValid()) {

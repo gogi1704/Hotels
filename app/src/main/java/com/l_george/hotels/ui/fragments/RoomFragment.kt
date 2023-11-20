@@ -66,6 +66,10 @@ class RoomFragment : Fragment() {
                 }
             }
 
+            roomViewModel.progressState.observe(viewLifecycleOwner){
+                progress.visibility = if (it)View.VISIBLE else View.GONE
+            }
+
             buttonBack.setOnClickListener {
                 findNavController().navigateUp()
             }

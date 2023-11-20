@@ -8,15 +8,16 @@
     tools:context=".ui.fragments.HotelsFragment">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/button_card"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_marginBottom="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:orientation="vertical">
 
 
@@ -89,13 +90,13 @@
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
-                        android:layout_marginStart="4dp"
-                        tools:text="5"
                         android:textAlignment="center"
                         android:textColor="@color/text_yellow"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:text="5" />
 
                     <TextView
                         android:id="@+id/rating_name"
@@ -103,10 +104,10 @@
                         android:layout_height="25dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
-                        tools:text="Превосходно"
                         android:textAlignment="center"
                         android:textColor="@color/text_yellow"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:text="Превосходно" />
 
                 </LinearLayout>
 
@@ -116,13 +117,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/roboto_medium"
-                    tools:text="Steigenberger Makadi"
+                    android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_star" />
+                    app:layout_constraintTop_toBottomOf="@id/card_star"
+                    tools:text="Steigenberger Makadi" />
 
                 <TextView
                     android:id="@+id/text_adress"
@@ -132,18 +133,18 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/roboto"
-                    tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет"
                     android:textColor="@color/text_blue"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/text_name" />
+                    app:layout_constraintTop_toBottomOf="@id/text_name"
+                    tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
                 <TextView
-                    android:textColor="@color/black"
                     android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
                     android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_adress"
@@ -169,8 +170,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:paddingBottom="16dp"
-                android:background="@drawable/main_card_all_corners_bg">
+                android:background="@drawable/main_card_all_corners_bg"
+                android:paddingBottom="16dp">
 
                 <TextView
                     android:id="@+id/text_about_name"
@@ -204,10 +205,10 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/roboto"
-                    tools:text="Отель VIP-класса с собственными гольф полями. Высокий уровнь сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintTop_toBottomOf="@id/recyclerView_per" />
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView_per"
+                    tools:text="Отель VIP-класса с собственными гольф полями. Высокий уровнь сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!" />
 
 
                 <LinearLayout
@@ -317,9 +318,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
                             android:fontFamily="@font/roboto"
+                            android:text="@string/most_famous"
                             android:textColor="@color/text_grey"
                             android:textSize="16sp"
-                            android:text="@string/most_famous"
                             app:layout_constraintStart_toEndOf="@id/ic_check"
                             app:layout_constraintTop_toBottomOf="@id/text_included" />
 
@@ -431,6 +432,16 @@
         android:layout_height="48dp"/>
 
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="72dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

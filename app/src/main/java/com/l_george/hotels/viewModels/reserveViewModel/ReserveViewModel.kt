@@ -22,6 +22,8 @@ import kotlinx.coroutines.launch
 
 class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
 
+    val progressState = MutableLiveData(false)
+
     private var error: AppExceptions? = null
         set(value) {
             field = value
@@ -142,8 +144,10 @@ class ReserveViewModel(private val repository: HotelRepository) : ViewModel() {
 
     private fun getReserveHotel() {
         viewModelScope.launch {
+            progressState.value = true
             try {
                 reserveModel = repository.getHotelReserved()
+                progressState.value = false
             } catch (api: ApiError) {
                 error = ApiError()
             } catch (io: NetworkError) {

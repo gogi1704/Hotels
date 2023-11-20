@@ -14,6 +14,7 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class HotelViewModel(private val repository: HotelRepository) : ViewModel() {
 
+    val progressState = MutableLiveData(false)
     private var error:AppExceptions? = null
         set(value) {
             field = value
@@ -35,12 +36,13 @@ class HotelViewModel(private val repository: HotelRepository) : ViewModel() {
     val hotelImagesLiveData = MutableLiveData(hotelImages)
 
     private fun getHotel() {
+        progressState.value = true
         viewModelScope.launch {
             try {
                 val hotelFromApi = repository.getHotel()
                 hotel = hotelFromApi
                 hotelImages = hotelFromApi.image_urls.map { CarouselItem(imageUrl = it) }
-
+                progressState.value = false
             } catch (api: ApiError) {
                 error = ApiError()
             } catch (io: NetworkError) {

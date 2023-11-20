@@ -13,6 +13,8 @@ import kotlinx.coroutines.launch
 
 class RoomViewModel(private val repository: HotelRepository) : ViewModel() {
 
+    val progressState = MutableLiveData(false)
+
     private var error: AppExceptions? = null
         set(value) {
             field = value
@@ -30,8 +32,10 @@ class RoomViewModel(private val repository: HotelRepository) : ViewModel() {
 
     private fun getRooms(){
         viewModelScope.launch {
+            progressState.value = true
             try {
                 listRooms = repository.getRooms()
+                progressState.value = false
             }catch (api: ApiError) {
                 error = ApiError()
             } catch (io: NetworkError) {
